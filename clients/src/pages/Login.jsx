@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-import { Textbox } from "../components/index.js"
+import { Textbox, Button } from "../components/index.js"
 
 const Login = () => {
   const user = "";
@@ -49,6 +49,21 @@ const Login = () => {
                 className="w-full rounded-full"
                 register={register("email", { required: "Email is required" })}
                 error={errors.email ? errors.email.message : ""}
+              />
+              <Textbox
+                placeholder="123!@#"
+                type="password"
+                name="password"
+                label="Enter Your Password"
+                className="w-full rounded-full"
+                register={register("password", { required: "Password is required" })}
+                error={errors.email ? errors.email.message : ""}
+              />
+              <span className="text-sm text-gray-800 hover:text-blue-400 hover:underline cursor-pointer transition-colors duration-100 ease-in-out">Forget Password?</span>
+              <Button
+                type="submit"
+                label="Sumbit"
+                className="w-full h-10 bg-blue-700 text-white !rounded-full"
               />
             </div>
           </form>
