@@ -3,10 +3,11 @@ import { Toaster } from "sonner";
 
 
 import { Dashboard, Login, Task, Users, TaskDetailes, Trash } from "./pages/index.js";
+import { useSelector } from "react-redux";
 
 const Layout = () => {
   const location = useLocation();
-  const user = ""
+  const { user } = useSelector(state => state.auth);
 
   return user ? (
     <div className="w-full h-screen flex flex-col md:flex-row">
@@ -33,7 +34,7 @@ const App = () => {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Navigate to="/dashboard" />} />
-          <Route path="/dashboard >" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/tasks >" element={<Task />} />
           <Route path="/complete/:status >" element={<Task />} />
           <Route path="/in-progress/:status >" element={<Task />} />

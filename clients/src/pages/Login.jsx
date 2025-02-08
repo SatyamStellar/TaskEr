@@ -3,19 +3,19 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 import { Textbox, Button } from "../components/index.js"
+import { useSelector } from "react-redux";
 
 const Login = () => {
-  const user = "";
+  const { user } = useSelector(state => state.auth);
   const { register, handleSubmit, formState: { errors } } = useForm();
+  const navigate = useNavigate();
 
   const submitHandler = async (data) => {
     console.log('onSubmit')
   }
 
-  const nagivate = useNavigate();
-
   useEffect(() => {
-    user && nagivate("/dashboard");
+    user && navigate("/dashboard");
   }, [user])
 
   return (
