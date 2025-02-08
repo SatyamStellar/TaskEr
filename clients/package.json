@@ -4,13 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "dev": "bun vite",
+    "build": "bun vite build",
+    "preview": "bun vite preview"
   },
   "dependencies": {
-    "@headlessui/react": "^2.1.10",
+    "@headlessui/react": "^2.2.0",
     "@reduxjs/toolkit": "^2.3.0",
     "clsx": "^2.1.1",
     "moment": "^2.30.1",

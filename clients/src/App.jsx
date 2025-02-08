@@ -3,7 +3,7 @@ import { Toaster } from "sonner";
 import { useSelector } from "react-redux";
 
 import { Dashboard, Login, Task, Users, TaskDetailes, Trash } from "./pages/index.js";
-import { SideBar } from "./components/index.js";
+import { SideBar, Navbar } from "./components/index.js";
 
 const Layout = () => {
   const location = useLocation();
@@ -16,7 +16,7 @@ const Layout = () => {
       </div>
       {/*<MobileSidebar /> */}
       <div className="flex-1 overflow-y-auto">
-        {/* Navbar */}
+        <Navbar />
         <div className="p-4 2xl:px-10">
           <Outlet />
         </div>
