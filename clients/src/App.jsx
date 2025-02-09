@@ -1,9 +1,14 @@
 import { Routes, Route, Navigate, Outlet, useLocation } from "react-router-dom";
 import { Toaster } from "sonner";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Transition } from "@headlessui/react";
 
+import { IoClose } from "react-icons/io5";
 import { Dashboard, Login, Task, Users, TaskDetailes, Trash } from "./pages/index.js";
 import { SideBar, Navbar } from "./components/index.js";
+import { Fragment, useRef } from "react";
+import { setSidebar } from "./redux/slices/authSlice.js";
+
 
 const Layout = () => {
   const location = useLocation();
@@ -14,7 +19,7 @@ const Layout = () => {
       <div className="w-1/5 h-screen bg-white sticky top-0 hidden md:block">
         <SideBar />
       </div>
-      {/*<MobileSidebar /> */}
+      <MobileSidebar />
       <div className="flex-1 overflow-y-auto">
         <Navbar />
         <div className="p-4 2xl:px-10">
@@ -26,6 +31,57 @@ const Layout = () => {
     <Navigate to="/log-in" state={{ from: location }} replace />
   )
 
+}
+
+const MobileSidebar = () => {
+  const { isSidebarOpen } = useSelector((state) => state.auth);
+  const mobileMenuRef = useRef(null);
+  const dispatch = useDispatch();
+
+  const closeSidebar = () => {
+    dispatch(setSidebar(false));
+  }
+
+  return (
+    <>
+      <Transition
+        show={isSidebarOpen}
+        as={Fragment}
+        enter='transition-opacity duration-700'
+        enterFrom='opacity-x-10'
+        enterTo='opacity-x-100'
+        leave='transition-opacity duration-700'
+        leaveFrom='opacity-x-100'
+        leaveTo='opacity-x-0'
+      >
+        {(ref) => (
+          <div
+            ref={(node) => (mobileMenuRef.current = node)}
+            className={`
+             "md:hidden w-full h-full bg-black/40 transition-all duration-700 transform ",
+              setSidebar ? "translate-x-0" : "translate-x-full"
+            `}
+            onClick={closeSidebar}
+          >
+            <div className='bg-white -mt-5 w-3/4 h-full cursor-pointer'>
+              <div className='w-full flex justify-end px-5 mt-5 '>
+                <button
+                  onClick={closeSidebar}
+                  className='flex justify-end items-end mt-2'
+                >
+                  <IoClose size={25} />
+                </button>
+              </div>
+
+              <div className='-mt-5'>
+                <SideBar />
+              </div>
+            </div>
+          </div>
+        )}
+      </Transition>
+    </>
+  )
 }
 
 const App = () => {

@@ -1,6 +1,6 @@
 import { Menu, Transition } from '@headlessui/react'
 import { Fragment, useState } from "react";
-import { FaUser, FaUserLock } from "react-icons/fa";
+import { FaAudible, FaUser, FaUserLock } from "react-icons/fa";
 import { IoLogOutOutline } from "react-icons/io5";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -35,10 +35,42 @@ const UserAvatar = () => {
             leaveFrom='transform opacity-100 scale-100'
             leaveTo='transform opacity-0 scale-95'
           >
-            {/* #TODO: */}
-            <Menu.Items className="absolute right-0 mt-2 w-48 origin-top-right divide-gray-100 rounded-lg bg-white shadow-2xl ring-1 ring-black/5 focus:outline-none">
-              <Menu.Item>
-              </Menu.Item>
+            <Menu.Items className="absolute right-0 mt-2 w-48 origin-top-right divide-gray-100 rounded-lg bg-gray-300/50 shadow-2xl ring-1 ring-black/5 focus:outline-none">
+              <div className="p-4">
+                <Menu.Item>
+                  {({ active }) => (
+                    <button
+                      onClick={() => setOpen(true)}
+                      className="flex group text-gray-800 items-center rounded-lg px-2 py-2 text-base"
+                    >
+                      <FaUser className="mr-2" aria-hidden="true" />
+                      Profile
+                    </button>
+                  )}
+                </Menu.Item>
+                <Menu.Item>
+                  {({ active }) => (
+                    <button
+                      onClick={() => setOpenPassword(true)}
+                      className="flex group text-gray-800 items-center rounded-lg px-2 py-2 text-base text-ellipsis whitespace-nowrap"
+                    >
+                      <FaUserLock className="mr-2" aria-hidden="true" />
+                      Change Password
+                    </button>
+                  )}
+                </Menu.Item>
+                <Menu.Item>
+                  {({ active }) => (
+                    <button
+                      onClick={logoutHandler}
+                      className="flex group text-red-500 items-center rounded-lg px-2 py-2 text-base"
+                    >
+                      <IoLogOutOutline className="mr-2" aria-hidden="true" />
+                      Logout
+                    </button>
+                  )}
+                </Menu.Item>
+              </div>
             </Menu.Items>
           </Transition >
         </Menu>
