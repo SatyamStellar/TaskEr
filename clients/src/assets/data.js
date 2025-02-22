@@ -572,19 +572,19 @@ export const summary = {
 
 export const chartData = [
     {
-        name: "High",
+        name: "Medium",
         total: 2400,
     },
     {
-        name: "Medium",
+        name: "Low",
         total: 2210,
     },
     {
-        name: "Normal",
+        name: "High",
         total: 3210,
     },
     {
-        name: "Low",
+        name: "Medium",
         total: 2290,
     },
 ];
